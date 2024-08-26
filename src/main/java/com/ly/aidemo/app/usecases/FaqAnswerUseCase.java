@@ -1,16 +1,9 @@
 package com.ly.aidemo.app.usecases;
 
 import org.springframework.ai.chat.client.ChatClient;
-import org.springframework.ai.chat.messages.Message;
-import org.springframework.ai.chat.messages.UserMessage;
-import org.springframework.ai.chat.model.ChatResponse;
-import org.springframework.ai.chat.prompt.ChatOptions;
-import org.springframework.ai.chat.prompt.ChatOptionsBuilder;
 import org.springframework.ai.chat.prompt.Prompt;
 import org.springframework.ai.chat.prompt.PromptTemplate;
-import org.springframework.ai.chat.prompt.SystemPromptTemplate;
 import org.springframework.ai.document.Document;
-import org.springframework.ai.ollama.OllamaChatModel;
 import org.springframework.ai.vectorstore.SearchRequest;
 import org.springframework.ai.vectorstore.VectorStore;
 import org.springframework.beans.factory.annotation.Value;
@@ -33,6 +26,7 @@ public class FaqAnswerUseCase {
     public FaqAnswerUseCase(ChatClient.Builder builder, VectorStore vectorStore) {
         this.chatClient = builder.build();
         this.vectorStore = vectorStore;
+
     }
 
     public String generate(String query) {
@@ -45,6 +39,9 @@ public class FaqAnswerUseCase {
         promptParameters.put("documents", String.join("\n", contentList));
         Prompt prompt = promptTemplate.create(promptParameters);
 
-        return chatClient.call(prompt).getResult().getOutput().getContent();
+        return chatClient.prompt(prompt)
+                .call()
+                .content();
+
     }
 }

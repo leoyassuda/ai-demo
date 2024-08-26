@@ -1,12 +1,29 @@
 spring:
+  application:
+    name: faq-coffee
+  datasource:
+    url: jdbc:postgresql://localhost:5432/faq-coffee
+    username: admin
+    password: password
   ai:
     ollama:
       base-url: http://localhost:11434/
       chat:
         model: llama3.1
+    vectorstore:
+      pgvector:
+        initialize-schema: true
+        index-type: none
+        distance-type: cosine-distance
+        dimensions: 4096
+        remove-existing-vector-store-table: true
   threads:
     virtual:
       enabled: true
+
+  docker:
+    compose:
+      lifecycle-management: start-only
 
 server:
   port: 9292
