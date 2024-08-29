@@ -3,8 +3,8 @@ services:
     image: "pgvector/pgvector:pg16"
     environment:
       - POSTGRES_DB=faq-coffee
-      - POSTGRES_PASSWORD=password
-      - POSTGRES_USER=admin
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
       - VECTOR_STORE_TYPE=pgVector
     labels:
       - org.springframework.boot.service-connection=postgres

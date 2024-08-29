@@ -3,8 +3,8 @@ spring:
     name: faq-coffee
   datasource:
     url: jdbc:postgresql://localhost:5432/faq-coffee
-    username: admin
-    password: password
+    username: ${POSTGRES_USER}
+    password: ${POSTGRES_PASSWORD}
   ai:
     ollama:
       base-url: http://localhost:11434/
