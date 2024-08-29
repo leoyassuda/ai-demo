@@ -2,7 +2,7 @@
 
 ## Descrição
 
-Esta aplicação utiliza Spring AI e Ollama local como uma forma de estudo.
+Esta aplicação utiliza Spring AI e Ollama local como uma forma de estudo. A ideia é criar um chatbot que responde às perguntas com base em uma base de dados.
 
 ## Dependências
 
